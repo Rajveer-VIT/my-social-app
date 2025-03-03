@@ -24,7 +24,7 @@ const Navbar = () => {
 
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/friends/all-users/${currentUser._id}`
+        `https://my-social-app-r4ch.onrender.com/api/friends/all-users/${currentUser._id}`
       );
       const filteredUsers = response.data.filter((user) =>
         user.name.toLowerCase().includes(query.toLowerCase())
