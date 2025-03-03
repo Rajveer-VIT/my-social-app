@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import axios from "axios";
 import { useState, useContext } from "react";
-import { AuthContext } from "../context/AuthContext"; // Correct casing
+import { AuthContext } from "../context/AuthContext";
 
 const Card = ({ user }) => {
   const { currentUser } = useContext(AuthContext);
@@ -19,10 +19,13 @@ const Card = ({ user }) => {
     }
 
     try {
-      await axios.post("https://my-social-app-r4ch.onrender.com/api/friends/send-friend-request", {
-        senderId: currentUser._id,
-        receiverId,
-      });
+      await axios.post(
+        "https://my-social-app-r4ch.onrender.com/api/friends/send-friend-request",
+        {
+          senderId: currentUser._id,
+          receiverId,
+        }
+      );
       setRequestSent(true);
     } catch (error) {
       alert(error.response?.data?.message || "Error sending request");
@@ -30,8 +33,8 @@ const Card = ({ user }) => {
   };
 
   return (
-    <div className="bg-gradient-to-r from-blue-500 to-indigo-600 text-white p-6 rounded-xl shadow-lg transform transition duration-300 hover:scale-105">
-      <h1 className="text-2xl font-semibold">{user.name}</h1>
+    <div className="bg-gradient-to-r from-blue-500 to-indigo-600 text-white p-6 rounded-xl shadow-lg transform transition duration-300 hover:scale-105 w-full sm:w-80 mx-auto">
+      <h1 className="text-2xl font-semibold text-center">{user.name}</h1>
 
       {!requestSent ? (
         <button
