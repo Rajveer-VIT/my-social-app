@@ -9,13 +9,13 @@ const Navbar = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const handleLogout = () => {
     logout();
     navigate("/login");
   };
 
-  // Fetch all users based on search query
   const handleSearch = async (query) => {
     if (!query) {
       setSearchResults([]);
@@ -35,15 +35,12 @@ const Navbar = () => {
     }
   };
 
-  // Handle search input change
   const handleInputChange = (e) => {
     const query = e.target.value;
-    console.log("Search Query:", query); // Debugging
     setSearchQuery(query);
     handleSearch(query);
   };
 
-  // Close search results when clicking outside
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (!e.target.closest(".search-container")) {
@@ -55,26 +52,55 @@ const Navbar = () => {
     return () => document.removeEventListener("click", handleClickOutside);
   }, []);
 
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
   return (
     <nav className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-4 shadow-lg">
       <div className="max-w-7xl mx-auto flex justify-between items-center">
-        {/* Left Side: App Name and Links */}
+        {/* Left Side: App Name and Mobile Toggle */}
         <div className="flex items-center space-x-6">
           <h1 className="text-xl font-bold">MyApp</h1>
-          <div className="flex space-x-4">
-            <Link to="/" className="hover:text-gray-200 transition">
-              Home
-            </Link>
-            <Link to="/about" className="hover:text-gray-200 transition">
-              About
-            </Link>
-            <Link to="/contact" className="hover:text-gray-200 transition">
-              Contact
-            </Link>
-            <Link to="/dashboard" className="hover:text-gray-200 transition">
-              Dashboard
-            </Link>
-          </div>
+          <button
+            className="md:hidden focus:outline-none"
+            onClick={toggleMobileMenu}
+          >
+            <svg
+              className="h-6 w-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M4 6h16M4 12h16M4 18h16"
+              ></path>
+            </svg>
+          </button>
+        </div>
+
+        {/* Navigation Links */}
+        <div
+          className={`md:flex space-x-4 ${
+            isMobileMenuOpen ? "flex flex-col mt-4 md:mt-0" : "hidden md:flex"
+          }`}
+        >
+          <Link to="/" className="hover:text-gray-200 transition">
+            Home
+          </Link>
+          <Link to="/about" className="hover:text-gray-200 transition">
+            About
+          </Link>
+          <Link to="/contact" className="hover:text-gray-200 transition">
+            Contact
+          </Link>
+          <Link to="/dashboard" className="hover:text-gray-200 transition">
+            Dashboard
+          </Link>
         </div>
 
         {/* Right Side: Search Bar and User Info */}
@@ -112,7 +138,9 @@ const Navbar = () => {
           {/* User Info and Logout Button */}
           {currentUser ? (
             <div className="flex items-center space-x-4">
-              <span className="text-sm">Welcome, {currentUser.name}</span>
+              <span className="text-sm hidden md:inline">
+                Welcome, {currentUser.name}
+              </span>
               <button
                 onClick={handleLogout}
                 className="bg-red-600 text-white px-3 py-1 rounded-lg hover:bg-red-700 transition"
