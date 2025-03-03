@@ -8,7 +8,7 @@ const About = () => {
 
         <div className="space-y-6 text-gray-700">
           <p className="text-lg leading-relaxed">
-            Welcome to <span className="font-semibold text-blue-600">MyApp</span> your go-to platform for seamless user interactions and social connections. We are dedicated to providing you with the best experience, whether you re here to connect with friends, explore new opportunities, or simply enjoy our services.
+            Welcome to <span className="font-semibold text-blue-600">MyApp</span>, your go-to platform for seamless user interactions and social connections. We are dedicated to providing you with the best experience, whether you're here to connect with friends, explore new opportunities, or simply enjoy our services.
           </p>
 
           <p className="text-lg leading-relaxed">
@@ -19,17 +19,10 @@ const About = () => {
             <h2 className="text-2xl font-bold text-gray-900 mb-4">Our Team</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div className="bg-blue-50 p-6 rounded-lg shadow-md">
-                <h3 className="text-xl font-semibold text-blue-600">John Doe</h3>
-                <p className="text-gray-600">CEO & Founder</p>
+                <h3 className="text-xl font-semibold text-blue-600">Rajveer Singh Khinchi</h3>
+                <p className="text-gray-600">Developer & Designer</p>
                 <p className="mt-2 text-gray-700">
-                  John is a visionary leader with over 10 years of experience in the tech industry.
-                </p>
-              </div>
-              <div className="bg-blue-50 p-6 rounded-lg shadow-md">
-                <h3 className="text-xl font-semibold text-blue-600">Jane Smith</h3>
-                <p className="text-gray-600">CTO</p>
-                <p className="mt-2 text-gray-700">
-                  Jane is a tech enthusiast who loves building scalable and efficient systems.
+                  Rajveer is a passionate developer currently pursuing his B.Tech in Information Technology at VIT Vellore. He loves building user-friendly and scalable applications.
                 </p>
               </div>
             </div>
@@ -43,6 +36,16 @@ const About = () => {
               <li>Transparency and Trust</li>
               <li>Community Building</li>
             </ul>
+          </div>
+
+          <div className="mt-8">
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">Our Story</h2>
+            <p className="text-lg leading-relaxed">
+              MyApp was born out of a simple idea: to create a platform where people can connect, share, and grow together. As a team of passionate individuals, we believe in the power of technology to bring people closer and make the world a better place.
+            </p>
+            <p className="text-lg leading-relaxed mt-4">
+              From the initial concept to the final product, every step of our journey has been driven by a commitment to excellence and a desire to make a positive impact. We are proud of what we have built so far, and we are excited to continue improving and expanding our platform.
+            </p>
           </div>
         </div>
       </div>
