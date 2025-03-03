@@ -13,7 +13,7 @@ const Dashboard = () => {
   const fetchUsers = useCallback(async () => {
     if (!currentUser?._id) return;
     try {
-      const res = await axios.get(`http://localhost:5000/api/friends/all-users/${currentUser._id}`);
+      const res = await axios.get(`https://my-social-app-r4ch.onrender.com/api/friends/all-users/${currentUser._id}`);
       setUsers(res.data);
     } catch (error) {
       console.error("Error fetching users:", error);
