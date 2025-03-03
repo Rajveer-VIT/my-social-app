@@ -23,7 +23,7 @@ const Home = () => {
             Connect with Friends and the World
           </h1>
           <p className="text-xl text-gray-200 mb-8">
-            Share your moments, discover new connections, and stay updated with
+            Discover new connections, and stay updated with
             what matters to you.
           </p>
           <div className="space-x-4">
