@@ -19,7 +19,7 @@ connectDB().then(() => console.log("✅ MongoDB Connected")).catch(err => {
 
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: "https://my-social-app-git-main-rajveer-singhs-projects-498636d3.vercel.app",
     credentials: true,
     methods: "GET,POST,PUT,DELETE",
   })
