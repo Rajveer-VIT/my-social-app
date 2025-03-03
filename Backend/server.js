@@ -17,29 +17,35 @@ connectDB().then(() => console.log("✅ MongoDB Connected")).catch(err => {
   process.exit(1);
 });
 
+// CORS Middleware
 app.use(
   cors({
-   origin: "*", 
-    credentials: true,
-    methods: "GET,POST,PUT,DELETE",
+    origin: "https://my-social-app-git-main-rajveer-singhs-projects-498636d3.vercel.app", // Replace with your frontend URL
+    credentials: true, // Allow credentials
+    methods: "GET,POST,PUT,DELETE", // Allow specific HTTP methods
   })
 );
 
+// Handle OPTIONS requests for all routes
+app.options("*", cors());
+
 app.use(express.json());
 
+// Session Middleware
 app.use(
   session({
     secret: process.env.SESSION_SECRET || "default_secret",
     resave: false,
     saveUninitialized: false,
     store: MongoStore.create({ mongoUrl: process.env.MONGO_URI }),
-    cookie: { secure: false, httpOnly: true, maxAge: 24 * 60 * 60 * 1000 },
+    cookie: { secure: true, httpOnly: true, maxAge: 24 * 60 * 60 * 1000, sameSite: "none" },
   })
 );
-app.options("*", cors()); // Allow preflight requests for all routes
+
 app.use(passport.initialize());
 app.use(passport.session());
 
+// Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/friends", friendRoutes);
 app.use("/apii", contactRoutes);
@@ -48,11 +54,13 @@ app.get("/", (req, res) => {
   res.send("✅ Server is running...");
 });
 
+// Error Handling Middleware
 app.use((err, req, res, next) => {
   console.error("❌ Error:", err.message);
   res.status(500).json({ message: "Internal Server Error" });
 });
 
+// Start the server
 app.listen(port, () => {
   console.log(`🚀 Server running on http://localhost:${port}`);
 });
