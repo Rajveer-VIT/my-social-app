@@ -39,7 +39,7 @@ const Contact = () => {
   return (
     <div className="min-h-screen bg-gradient-to-r from-blue-50 to-indigo-100 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-2xl p-8">
-        <h1 className="text-4xl font-extrabold text-center text-gray-900 mb-8">
+        <h1 className="text-3xl md:text-4xl font-extrabold text-center text-gray-900 mb-8">
           Contact Us
         </h1>
         {success && <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-6">{success}</div>}
