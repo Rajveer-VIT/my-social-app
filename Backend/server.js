@@ -19,7 +19,7 @@ connectDB().then(() => console.log("✅ MongoDB Connected")).catch(err => {
 
 app.use(
   cors({
-    origin: "https://my-social-app-git-main-rajveer-singhs-projects-498636d3.vercel.app",
+   origin: "*", 
     credentials: true,
     methods: "GET,POST,PUT,DELETE",
   })
@@ -36,7 +36,7 @@ app.use(
     cookie: { secure: false, httpOnly: true, maxAge: 24 * 60 * 60 * 1000 },
   })
 );
-
+app.options("*", cors()); // Allow preflight requests for all routes
 app.use(passport.initialize());
 app.use(passport.session());
 
