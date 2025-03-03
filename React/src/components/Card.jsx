@@ -19,7 +19,7 @@ const Card = ({ user }) => {
     }
 
     try {
-      await axios.post("http://localhost:5000/api/friends/send-friend-request", {
+      await axios.post("https://my-social-app-r4ch.onrender.com/api/friends/send-friend-request", {
         senderId: currentUser._id,
         receiverId,
       });
