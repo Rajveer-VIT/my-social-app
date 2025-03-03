@@ -9,7 +9,6 @@ const Dashboard = () => {
   const [friendRequests, setFriendRequests] = useState([]);
   const [friends, setFriends] = useState([]);
 
-  // Fetch all users except the current user
   const fetchUsers = useCallback(async () => {
     if (!currentUser?._id) return;
     try {
@@ -20,7 +19,6 @@ const Dashboard = () => {
     }
   }, [currentUser]);
 
-  // Fetch friend requests for the current user
   const fetchFriendRequests = useCallback(async () => {
     if (!currentUser?._id) return;
     try {
@@ -31,7 +29,6 @@ const Dashboard = () => {
     }
   }, [currentUser]);
 
-  // Fetch friends list for the current user
   const fetchFriends = useCallback(async () => {
     if (!currentUser?._id) return;
     try {
@@ -42,27 +39,23 @@ const Dashboard = () => {
     }
   }, [currentUser]);
 
-  // Respond to a friend request (accept or reject)
   const respondToRequest = async (senderId, action) => {
-    if (!currentUser?._id) return; // Ensure currentUser._id exists
+    if (!currentUser?._id) return;
     try {
       await axios.post("http://localhost:5000/api/friends/respond-friend-request", {
         userId: currentUser._id,
         senderId,
-        action, // "accept" or "reject"
+        action,
       });
 
-      // Update friendRequests state by removing the responded request
       setFriendRequests((prevRequests) => prevRequests.filter((req) => req._id !== senderId));
 
-      // If the action is "accept", refetch the friends list
       if (action === "accept") fetchFriends();
     } catch (error) {
       console.error("Error responding to request:", error);
     }
   };
 
-  // Fetch data when the component mounts or currentUser changes
   useEffect(() => {
     if (currentUser) {
       fetchUsers();
@@ -72,9 +65,9 @@ const Dashboard = () => {
   }, [currentUser, fetchUsers, fetchFriendRequests, fetchFriends]);
 
   return (
-    <div className="p-10">
-      <h1 className="text-2xl font-bold">All Users</h1>
-      <div className="grid grid-cols-3 gap-4">
+    <div className="p-4 sm:p-10">
+      <h1 className="text-2xl font-bold mb-4">All Users</h1>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
         {users.map((user) => (
           <Card key={user._id} user={user} />
         ))}
@@ -82,8 +75,8 @@ const Dashboard = () => {
 
       {friendRequests.length > 0 && (
         <>
-          <h2 className="text-2xl font-bold mt-6">Pending Friend Requests</h2>
-          <div className="grid grid-cols-2 gap-4">
+          <h2 className="text-2xl font-bold mt-6 mb-4">Pending Friend Requests</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {friendRequests.map((req) => (
               <div key={req._id} className="p-4 bg-yellow-200 rounded-lg shadow-md">
                 <h3 className="text-lg font-semibold">{req.name}</h3>
@@ -109,8 +102,8 @@ const Dashboard = () => {
 
       {friends.length > 0 && (
         <>
-          <h2 className="text-2xl font-bold mt-6">My Friends</h2>
-          <div className="grid grid-cols-3 gap-4">
+          <h2 className="text-2xl font-bold mt-6 mb-4">My Friends</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
             {friends.map((friend) => (
               <div key={friend._id} className="p-4 bg-blue-200 rounded-lg shadow-md">
                 <h3 className="text-lg font-semibold">{friend.name}</h3>
