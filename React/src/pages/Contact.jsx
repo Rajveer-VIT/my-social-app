@@ -26,7 +26,7 @@ const Contact = () => {
     setSuccess("");
 
     try {
-      const response = await axios.post("http://localhost:5000/apii/contact", formData);
+      const response = await axios.post("https://my-social-app-r4ch.onrender.com/apii/contact", formData);
       setSuccess(response.data.message || "Message sent successfully!");
       setFormData({ name: "", email: "", message: "" });
     } catch (error) {
