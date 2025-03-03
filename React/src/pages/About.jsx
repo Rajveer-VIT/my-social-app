@@ -8,7 +8,7 @@ const About = () => {
 
         <div className="space-y-6 text-gray-700">
           <p className="text-lg leading-relaxed">
-            Welcome to <span className="font-semibold text-blue-600">MyApp</span>, your go-to platform for seamless user interactions and social connections. We are dedicated to providing you with the best experience, whether you're here to connect with friends, explore new opportunities, or simply enjoy our services.
+            Welcome to <span className="font-semibold text-blue-600">MyApp</span>, your go-to platform for seamless social connections. We are dedicated to providing you with the best experience, whether you're here to connect with friends, explore new opportunities, or simply enjoy our services.
           </p>
 
           <p className="text-lg leading-relaxed">
